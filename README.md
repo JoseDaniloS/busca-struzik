@@ -1,3 +1,3 @@
 # Busca-struzik
 
-Sortea um numero 23
+Sortea um numero 233
