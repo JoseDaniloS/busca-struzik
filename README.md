@@ -1,3 +1,3 @@
 # Busca-struzik
 
-Sortea um numero 
+Sortea um numero 2
