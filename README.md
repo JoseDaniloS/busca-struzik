@@ -1,1 +1,3 @@
-# busca-struzik
+# Busca-struzik
+
+Sortea um numero 
