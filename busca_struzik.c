@@ -29,7 +29,6 @@ int main(void)
     char valor[10];
     printf("Informe um nome: ");
     scanf(" %[^\n]", valor);
-    printf("%s\n",valor);
     for(int i = 0; i < strlen(valor); i++){
         valor[i] = toupper(valor[i]);
     }
