@@ -1,0 +1,12 @@
+Ana Beatriz	1001	8.5
+Pedro Souza	1006	7.5
+Lucas Fernandes	1010	7.8
+Carlos Silva	1002	7.0
+Rafael Almeida	1008	6.9
+Maria Oliveira	1003	9.2
+Juliana Lima	1009	8.2
+Camila Pereira	1007	9.0
+João Santos	1004	6.8
+Laura Costa	1005	8.7
+Danilo	1298	9.0
+Alice	2983	6.0
