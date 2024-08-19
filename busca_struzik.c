@@ -5,7 +5,7 @@
 
 typedef struct alunos {
     char nome[50];
-    long int matricula;
+    int matricula;
     float media;
 } Aluno;
 
@@ -40,7 +40,7 @@ void CaracterMaiusculo(char *valor) {
     }
 }
 
-// Função que verifica se existe algum caractere inválido (considerando apenas letras e espaço)
+// Função que verifica se existe algum caractere inválido (considerando apenas buffers e espaço)
 int VerificaCaracter(char *valor) {
     int tamanho = strlen(valor);
     for (int i = 0; i < tamanho; i++) {
@@ -102,9 +102,38 @@ int buscaExponencial(Aluno *alunos, int tamanho, char *valor) {
     return buscaBinaria(alunos, inicio, fim - 1, valor);
 }
 
+int validadorNumero(){
+    int numero;
+    char buffer;
+    int validador = -1;
+    validador = scanf("%d", &numero);
+    while (numero <= 0 || validador == 0) {
+        while(buffer != '\n'){
+            buffer = getchar();//limpar o buffer do teclado
+        }
+        printf("Numero invalido!\nInforme Novamente:\n");
+        validador = scanf("%d", &numero);
+    }
+    return numero;
+}
+
+float validadorMedia(){
+    float media;
+    char buffer;
+    int validador = -1;
+    do{
+        printf("Informe uma media valida:");
+        validador = scanf("%f", &media);
+        do{
+            buffer = getchar();//limpar o buffer do teclado
+        }while(buffer != '\n');
+    }while(validador == 0 || media < 0 || media > 10);
+    return media;
+}
+
 void cadastroAluno() {
     char nome[50];
-    long int matricula;
+    int matricula;
     float media;
 
     FILE *arquivo = Verificacao("alunos.txt", "a+");
@@ -115,28 +144,14 @@ void cadastroAluno() {
         printf("Informe o Nome novamente:\n");
         scanf(" %[^\n]", nome);
     }
-
+    
     printf("Informe a Matricula:\n");
-    scanf("%ld", &matricula);
-    while (matricula <= 0) {
-        printf("Matrícula invalida! Informe Novamente:\n");
-        scanf("%ld", &matricula);
-    }
+    matricula = validadorNumero();
 
-    printf("Informe a media (0.0 a 10.0):\n");
-    while (1) {
-        if (scanf("%f", &media) != 1) {
-            printf("Média inválida! Informe Novamente:\n");
-            while (getchar() != '\n'); // Limpa o buffer
-        } else if (media < 0.0 || media > 10.0) {
-            printf("Media invalida! Informe Novamente:\n");
-        } else {
-            break;
-        }
-    }
+    media = validadorMedia();
+    
 
-    fseek(arquivo, 0, SEEK_END); // Garante que o ponteiro está no final para adicionar novos registros
-    fprintf(arquivo, "%s\t%ld\t%.1f\n", nome, matricula, media);
+    fprintf(arquivo, "%s\t%d\t%.1f\n", nome, matricula, media);
     printf("Aluno cadastrado com sucesso!\n");
 
     fclose(arquivo);
@@ -144,16 +159,15 @@ void cadastroAluno() {
 
 void exibirLista() {
     char nome[50];
-    long int matricula;
+    int matricula;
     float media;
 
     FILE *arquivo = Verificacao("alunos.txt", "r");
 
-    fseek(arquivo, 0, SEEK_SET); // Volta o ponteiro para o início do arquivo
 
     printf("Lista de Alunos Cadastrados:\n");
-    while (fscanf(arquivo, " %49[^\t]\t%ld\t%f\n", nome, &matricula, &media) == 3) {
-        printf("%s\t%ld\t%.1f\n", nome, matricula, media);
+    while (fscanf(arquivo, " %49[^\t]\t%d\t%f\n", nome, &matricula, &media) == 3) {
+        printf("%s\t%d\t%.1f\n", nome, matricula, media);
     }
 
     fclose(arquivo);
@@ -164,13 +178,13 @@ int main(void) {
     char nomePesquisado[50];
 
     while (opcao != 4) {
-        printf("\nOpçoes Disponiveis:\n1 - Cadastrar Aluno\n2 - Exibir Lista de Alunos Cadastrados\n3 - Buscar Aluno por Nome\n4 - Sair\n");
-        scanf("%d", &opcao);
+        printf("\nOpcoes Disponiveis:\n1 - Cadastrar Aluno\n2 - Exibir Lista de Alunos Cadastrados\n3 - Buscar Aluno por Nome\n4 - Sair\n");
+        opcao = validadorNumero();
         switch (opcao) {
         case 1:
             printf("Cadastrando Aluno...\n");
             cadastroAluno();
-            system("cls");  // Para Windows; use "clear" em sistemas Unix
+            system("cls");  
             break;
         case 2:
             printf("Exibindo Lista...\n");
@@ -185,12 +199,12 @@ int main(void) {
 
             // Leitura dos dados
             int i = 0;
-            while (i < linhas && fscanf(arquivo, " %49[^\t]\t%ld\t%f\n", alunos[i].nome, &alunos[i].matricula, &alunos[i].media) == 3) {
+            while (i < linhas && fscanf(arquivo, " %49[^\t]\t%d\t%f\n", alunos[i].nome, &alunos[i].matricula, &alunos[i].media) == 3) {
                 CaracterMaiusculo(alunos[i].nome);
                 i++;
             }
 
-            fclose(arquivo); // Fechar o arquivo após a leitura
+            fclose(arquivo); 
 
             qsort(alunos, linhas, sizeof(Aluno), compararAlunos);
 
@@ -207,7 +221,7 @@ int main(void) {
             int posicao = buscaExponencial(alunos, linhas, nomePesquisado);
 
             if (posicao != -1) {
-                printf("\nPosicao: %d\nNome: %s\nMatricula: %ld\nMedia: %.1f\n", posicao, alunos[posicao].nome, alunos[posicao].matricula, alunos[posicao].media);
+                printf("\nPosicao: %d\nNome: %s\nMatricula: %d\nMedia: %.1f\n", posicao, alunos[posicao].nome, alunos[posicao].matricula, alunos[posicao].media);
             } else {
                 printf("Posicao nao encontrada!\n");
             }
@@ -216,10 +230,9 @@ int main(void) {
             break;
         case 4:
             printf("Encerrando o programa...\n");
-            
             return 0;
         default:
-            printf("Opção Invalida!");
+            printf("Opcao Invalida!\n");
             system("cls");
             break;
         }
