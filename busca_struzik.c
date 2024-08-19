@@ -106,14 +106,13 @@ int validadorNumero(){
     int numero;
     char buffer;
     int validador = -1;
-    validador = scanf("%d", &numero);
-    while (numero <= 0 || validador == 0) {
-        while(buffer != '\n'){
-            buffer = getchar();//limpar o buffer do teclado
-        }
-        printf("Numero invalido!\nInforme Novamente:\n");
+    do{
+        printf("Informe um Numero Valido:\n");
         validador = scanf("%d", &numero);
-    }
+        do{
+            buffer = getchar();//limpar o buffer do teclado
+        }while(buffer != '\n');
+    }while(numero <= 0 || validador == 0);
     return numero;
 }
 
