@@ -1,18 +1,68 @@
 # Busca-struzik
 
 ## Busca Exponencial (também chamado busca a galope ou busca Struzik).<br>
-É um algoritmo, criado por Jon Bentley e Andrew Chi-Chih Yao em 1976, para a busca listas ordenadas ilimitadas.
+É um algoritmo, criado por Jon Bentley e Andrew Chi-Chih Yao em 1976, para a buscar listas ordenadas ilimitadas.
 
-<strong>Complexidade de Tempo e Espaço:<br>
-![Captura de tela 2024-08-17 155259](https://github.com/user-attachments/assets/1e6a2a5b-ba1a-43fe-bea5-9593180f890a)<br>
-## Sistema Utilizado:<br>
-Cadastro de Usuarios<br>
-- Utilizando algoritmo de ordenação QuickSort<br>
-- Utilizando algortimo de busca-Struzik<br>
-- Verificador de Caracter alfabetico (a, A)<br>
-- Fução para converter caracteres minusculos em Maiusculos.<br>
-## Bibliotecas Utilizadas:<br>
-- ctype.h
-- string.h
-- stdio.h
-- stdlib.h
+## Tópicos
+
+- [Sobre o algoritmo de busca exponencial](#sobre-o-algoritmo-de-busca-exponencial)
+- [Como executar o código](#como-executar-o-código)
+- [Busca binária](#busca-binária) 
+- [Busca Exponencial](#busca-exponencial)
+- [Complexidade da busca exponencial.](#complexidade-de-busca-exponencial)
+- [Aplicabilidade](#aplicabilidade)
+- [Referências](#referência) 
+
+## Sobre o algoritmo de busca exponencial<br>
+
+- A pesquisa exponencial permite pesquisar em uma lista classificada e ilimitada por um valor de entrada especificado. O algoritmo consiste em duas etapas, por isso que a busca exponencial é considerada um algoritmo híbrido. A primeira fase visa buscar um intervalo de um array de entrada no qual assume-se que o elemento desejado deve estar presente e, estando o elemento no intervalo, aplica-se a segunda etapa, que seria realizar uma busca binária nesse intervalo pequeno. 
+
+## Como executar o código<br>
+- Para a execução do código é preciso abrir o terminal e digitar ./main
+
+## Busca binária<br>
+- Para utilizar a pesquisa exponencial é preciso ter conhecimento da busca binária (ou busca sequencial/linear, mas esta, em comparação com a binária é menos eficiente). No código implementamos uma função de busca binária:
+
+```
+int buscaBinaria(Aluno *alunos, int inicio, int fim, char *valor);
+```
+## Busca exponencial<br>
+
+```
+int buscaExponencial(Aluno *alunos, int tamanho, char *valor);
+```
+
+
+## Complexidade de busca exponencial
+### Tempo:
+```
+T(n) = C1 + C2 + C3 + C4(log n) + C5 (log n) + C6 +C7 + C8
+T(n) = a + log n(b)
+T(n) = a + log nb
+
+1 -> T(n) = a + log nb //Remove Constantes de soma
+2 -> T(n) = log nb //Remove Constantes Multiplicativas
+3 -> T(n) = log n
+T(n) = O(log n) //Notaçao Big O da Busca Exponencial 
+```
+### Espaço:
+```
+A complexidade de espaço é definida por O(1), pois espaço usado é constante, i = 1.
+```
+## Aplicabilidade
+- Sua aplicabilidade se destaca principalmente em cenários onde o custo de acesso aos elementos é alto ou quando estamos lidando com listas muito grandes.
+- Exemplo:<br> Lista de nomes ordenados<br> busca de nome por ou ID<br> busca de aluno por nome ou matricula.
+
+## Referência 
+Algoritmo de Ordenação: Comparação de Desempenho | by Ismaelly Eyre | Medium
+https://medium.com/@ismaelly_eyre_/algoritmos-de-ordenação-comparação-de-desempenho-e23806adab2f<br>
+Quicksort - Wikipédia, a enciclopédia livre
+https://pt.wikipedia.org/wiki/Quicksort<br>
+Busca Exponencial - Wikipédia, a enciclopédia livre
+https://pt.wikipedia.org/wiki/Busca_exponencial<br>
+Andrew Chi-Chih Yao - Wikipédia, a enciclopédia livre
+https://pt.wikipedia.org/wiki/Andrew_Chi-Chih_Yao<br>
+Jon Bentley - Wikipédia, a enciclopédia livre
+https://pt.wikipedia.org/wiki/Jon_Bentley
+
+
