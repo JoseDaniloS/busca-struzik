@@ -19,6 +19,11 @@
 
 ## Como executar o código<br>
 - Para a execução do código é preciso abrir o terminal e digitar ./main
+```
+gcc -c busca_struzik.c
+gcc -c main.c
+gcc -o main busca_struzik.o main.o
+```
 
 ## Busca binária<br>
 - Para utilizar a pesquisa exponencial é preciso ter conhecimento da busca binária (ou busca sequencial/linear, mas esta, em comparação com a binária é menos eficiente). No código implementamos uma função de busca binária:
