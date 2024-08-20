@@ -31,7 +31,8 @@ int buscaBinaria(Aluno *alunos, int inicio, int fim, char *valor);
 ```
 int buscaExponencial(Aluno *alunos, int tamanho, char *valor);
 ```
-
+A função receberá um  ponteiro do tipo ```Aluno``` que aponta para uma struct, um ```int``` tamanho que receberá o número de alunos cadastrados(tamanho total do array) e um ponteiro de ```char```  que passará o nome pesquisado. Dentro da função iniciaremos uma variávei ```index``` com 1, pois o salto começa no primeiro índice do array. Pesquisa o intervalo dentro do qual o nome está incluído, aumentando o índice em potências de 2
+Se este intervalo existir no array apliqua o algoritmo de Pesquisa Binária sobre ele, caso contrário, retorna -1.
 
 ## Complexidade de busca exponencial
 ### Tempo:
@@ -53,7 +54,7 @@ A complexidade de espaço é definida por O(1), pois espaço usado é constante,
 - Sua aplicabilidade se destaca principalmente em cenários onde o custo de acesso aos elementos é alto ou quando estamos lidando com listas muito grandes.
 - Exemplo:<br> Lista de nomes ordenados<br> busca de nome por ou ID<br> busca de aluno por nome ou matricula.
 
-## Referência 
+## Referências
 Algoritmo de Ordenação: Comparação de Desempenho | by Ismaelly Eyre | Medium
 https://medium.com/@ismaelly_eyre_/algoritmos-de-ordenação-comparação-de-desempenho-e23806adab2f<br>
 Quicksort - Wikipédia, a enciclopédia livre

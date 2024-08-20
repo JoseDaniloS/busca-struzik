@@ -116,7 +116,7 @@ int buscaBinaria(Aluno *alunos, int inicio, int fim, char *valor)
 int buscaExponencial(Aluno *alunos, int tamanho, char *valor)
 {
     int i = 1;
-   
+   //enquanto i for menor que o tamanho do array e o nome na posição i 
     while (i < tamanho && strcmp(alunos[i].nome, valor) <= 0) // Encontra o intervalo onde o valor pode estar
     {
         i *= 2; // Dobra o tamanho do intervalo
