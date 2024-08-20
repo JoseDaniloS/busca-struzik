@@ -9,6 +9,7 @@ struct alunos
 {
     char nome[50];
     int matricula;
+    int matricula;
     float media;
 };
 
@@ -166,6 +167,7 @@ void cadastroAluno()
 {
     char nome[50];
     int matricula;
+    int matricula;
     float media;
 
     FILE *arquivo = Verificacao("alunos.txt", "a+");
@@ -177,7 +179,7 @@ void cadastroAluno()
         printf("Informe o Nome novamente:\n");
         scanf(" %[^\n]", nome);
     }
-
+    
     printf("Informe a Matricula:\n");
     matricula = validadorNumero();
 
@@ -192,6 +194,7 @@ void cadastroAluno()
 void exibirLista()
 {
     char nome[50];
+    int matricula;
     int matricula;
     float media;
 
